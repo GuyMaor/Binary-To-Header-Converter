@@ -17,16 +17,15 @@ void main(int argc, char * argv[])
 
 	printf("Creating output file...\n");
 	FILE * fOUT = fopen("newheader.txt","w");
-	char first = 1;
 	fprintf(fOUT,"#ifndef <NAME>\n");
         fprintf(fOUT,"#define <NAME>\n");
 	fprintf(fOUT,"int8_t * <BIN_FILE> = {");
 
+	char first = 1;
 	char nextChar;
-	while(fscanf(fIN,"%c",&nextChar))
+	while(!feof(fIN))
 	{
-		if(nextChar==10)
-			break;
+		fscanf(fIN,"%c",&nextChar);
 		if(!first)
 			fprintf(fOUT,",");
 		else
